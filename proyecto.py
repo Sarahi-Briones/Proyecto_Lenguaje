@@ -94,3 +94,10 @@ for i in range(len(obj)):
 #Dividimos en train y test
 X_train, X_test, y_train, y_test= train_test_split(X, y, test_size=0.2,random_state=0,shuffle= True)
 
+#Carga del archivo txt a un dataframe para poder almacenarlo y convertirlo en diccionario
+df_dic = pd.read_csv('SEL_full.txt', sep=str("\t"), header=None, names=['Palabra', 'Nula[%]','Baja[%]', 'Media[%]', 'Alta[%]', 'PFA', 'Categoría'], skiprows=1, encoding='utf-8')
+df_dic.drop(['Nula[%]', 'Baja[%]', 'Media[%]', 'Alta[%]'], axis=1, inplace=True)
+
+#Convertimos a un diccionario
+diccionario = df_dic.to_dict('index')
+print(diccionario)
