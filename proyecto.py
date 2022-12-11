@@ -60,38 +60,36 @@ def LematizadorTitulos(titles,nlp):
 # opiniones_lematizadas=LematizadorOpiniones(opinions,nlp)
 # titulos_lematizados=LematizadorTitulos(titles,nlp)
 
-# #Guardamos opiniones y titulos lematizados en csv 
+# #Guardamos opiniones y titulos lematizados en pickle
 
 # matriz_lematizados=[]
+# headers=[("Title"),("Opinion"),("Polarity")]
+# matriz_lematizados.append(headers)
 # for titulo_lematizado,opinion_lematizada,polaridad in zip(titulos_lematizados,opiniones_lematizadas,polarity):
-#     headers=[("Title"),("Opinion"),("Polarity")]
-#     matriz_lematizados.append(headers)
 #     matriz_lematizados.append([titulo_lematizado,opinion_lematizada,polaridad])
 
-#Guardamos matriz_lematizados en pickle
+
+# #Guardamos matriz_lematizados en pickle
 # with open("obj.pickle", "wb") as f:
 #     pickle.dump(matriz_lematizados, f)
-
 
 with open("matriz_opiniones_titulos_lematizados.pickle", "rb") as f:
     obj = pickle.load(f)
 df=pd.DataFrame(obj)
 
-
 #Guardamos los datos de entrenamiento en X
 X=[]
-for i in range(len(df[0])):
+for i in range(len(obj)):
     if i!=0:
-        x1=str(df[0][i])
-        x2=str(df[1][i])
+        x1=str(obj[i][0])
+        x2=str(obj[i][1])
         X.append([x1.split(),x2.split()])
 
 #Guardamos las etiquetas en y
 y=[]
-for i in range(len(df[2])):
+for i in range(len(obj)):
     if i!=0:
-        y.append(df[2][i])
+        y.append(obj[i][2])
 
-
-#Dvidimos en train y test
+#Dividimos en train y test
 X_train, X_test, y_train, y_test= train_test_split(X, y, test_size=0.2,random_state=0,shuffle= True)
