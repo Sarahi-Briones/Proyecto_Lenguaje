@@ -100,4 +100,7 @@ df_dic.drop(['Nula[%]', 'Baja[%]', 'Media[%]', 'Alta[%]'], axis=1, inplace=True)
 
 #Convertimos a un diccionario
 diccionario = df_dic.to_dict('index')
-print(diccionario)
+
+#Guardamos nuestro diccionario en un archivo .pkl
+with open("Dictionary.pkl", "wb") as tf:
+    pickle.dump(diccionario,tf)
