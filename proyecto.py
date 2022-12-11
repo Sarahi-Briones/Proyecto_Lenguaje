@@ -70,7 +70,7 @@ def LematizadorTitulos(titles,nlp):
 
 
 # #Guardamos matriz_lematizados en pickle
-# with open("obj.pickle", "wb") as f:
+# with open("matriz_opiniones_titulos_lematizados.pickle", "wb") as f:
 #     pickle.dump(matriz_lematizados, f)
 
 with open("matriz_opiniones_titulos_lematizados.pickle", "rb") as f:
